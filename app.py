@@ -94,7 +94,7 @@ if uploaded_video is not None:
             frame_count += 1
             
             # <--- 3. We skip frames to stop the server from freezing
-            if frame_count % 3 != 0:
+            if frame_count % 15 != 0:
                 continue
             
             # The rest of your AI logic continues normally below this
@@ -102,7 +102,7 @@ if uploaded_video is not None:
             frame_width = small_frame.shape[1]
             frame_area = small_frame.shape[0] * small_frame.shape[1]
                 
-            results = model.predict(source=small_frame, conf=ai_confidence, verbose=False)
+            results = model.predict(source=small_frame, conf=ai_confidence, verbose=False,imgsz=320)
                 
             players_in_sight = 0
             has_cover = False
@@ -246,4 +246,5 @@ if uploaded_video is not None:
                 st.info("No combat detected.")
             else:
                 for point in final_playbook:
+
                     st.info(point)
